@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="FINAL PROJECT CS"/>
+        <attribute name="authors" value="cavo center"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-12-15 05:08:04 PM"/>
+        <attribute name="created" value="Y2F2byBjZW50ZXI7REVTS1RPUC1LNlZRU1YxOzIwMjQtMTItMTU7MDc6MTg6MzEgQU07MzQ2MQ=="/>
+        <attribute name="edited" value="Y2F2byBjZW50ZXI7REVTS1RPUC1LNlZRU1YxOzIwMjQtMTItMTU7MDc6MzE6NDYgQU07NztjYXZvIGNlbnRlcjtERVNLVE9QLUs2VlFTVjE7MjAyNC0xMi0xNDswODowOToyNCBQTTtwcm9qZWN0IGNzLmZwcmc7ODY1NA=="/>
+        <attribute name="edited" value="Y2F2byBjZW50ZXI7REVTS1RPUC1LNlZRU1YxOzIwMjQtMTItMTU7MDU6MDg6MDQgUE07MjszNTgy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="PIN" type="Integer" array="False" size=""/>
+            <declare name="savedPIN" type="Integer" array="False" size=""/>
+            <assign variable="savedPIN" expression="2510"/>
+            <declare name="OPERATION" type="Integer" array="False" size=""/>
+            <declare name="balance" type="Real" array="False" size=""/>
+            <assign variable="balance" expression="25000"/>
+            <declare name="withdraw" type="Real" array="False" size=""/>
+            <declare name="deposit" type="Real" array="False" size=""/>
+            <declare name="attempts" type="Integer" array="False" size=""/>
+            <assign variable="attempts" expression="3"/>
+            <output expression="&quot;welcome to ATM&quot;" newline="True"/>
+            <output expression="&quot;ENTER YOUR PIN&quot;" newline="True"/>
+            <input variable="PIN"/>
+            <if expression="PIN &lt; 0">
+                <then>
+                    <while expression="attempts&gt;1 AND PIN!=savedPIN">
+                        <assign variable="attempts" expression="attempts-1"/>
+                        <output expression="&quot;Re-enter YOUR PIN &quot; &amp; attempts &amp; &quot; attempts left&quot;" newline="True"/>
+                        <input variable="PIN"/>
+                    </while>
+                </then>
+                <else>
+                    <if expression="PIN != savedPIN">
+                        <then>
+                            <while expression="attempts&gt;1 AND PIN != savedPIN">
+                                <assign variable="attempts" expression="attempts-1"/>
+                                <output expression="&quot;Re-enter YOUR PIN &quot; &amp; attempts &amp; &quot; attempts left&quot;" newline="True"/>
+                                <input variable="PIN"/>
+                            </while>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+            <if expression="PIN == savedPIN">
+                <then>
+                    <do expression="OPERATION != 4">
+                        <output expression="&quot;SELECT OPERATION:&quot;" newline="True"/>
+                        <output expression="&quot;1-CHECK THE BALANCE&quot;" newline="True"/>
+                        <output expression="&quot;2-WITHDRAW&quot;" newline="True"/>
+                        <output expression="&quot;3-DEPOSIT&quot;" newline="True"/>
+                        <output expression="&quot;4-EXIT&quot;" newline="True"/>
+                        <input variable="OPERATION"/>
+                        <if expression="OPERATION == 1">
+                            <then>
+                                <output expression="&quot;YOUR BALANCE =&quot; &amp; balance" newline="True"/>
+                            </then>
+                            <else/>
+                        </if>
+                        <if expression="OPERATION == 2">
+                            <then>
+                                <output expression="&quot;How much do you want to withdraw&quot;" newline="True"/>
+                                <input variable="withdraw"/>
+                                <if expression="withdraw &lt;=0">
+                                    <then>
+                                        <output expression="&quot;invalid input try again&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <if expression="withdraw &lt;= balance">
+                                            <then>
+                                                <assign variable="balance" expression="balance - withdraw"/>
+                                                <output expression="&quot;here is your &quot; &amp; withdraw" newline="True"/>
+                                                <output expression="&quot;YOUR NEW BALANCE =&quot; &amp; balance" newline="True"/>
+                                            </then>
+                                            <else>
+                                                <output expression="&quot;you exceed the limit you have try again&quot;" newline="True"/>
+                                            </else>
+                                        </if>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                        <if expression="OPERATION == 3">
+                            <then>
+                                <output expression="&quot;How much do you want to deposit&quot;" newline="True"/>
+                                <input variable="deposit"/>
+                                <if expression="deposit &lt;= 0">
+                                    <then>
+                                        <output expression="&quot;INVALID input try again&quot;" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <assign variable="balance" expression="balance + deposit"/>
+                                        <output expression="&quot;money added to your account&quot;" newline="True"/>
+                                        <output expression="&quot;YOUR NEW BALANCE =&quot; &amp;balance" newline="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else/>
+                        </if>
+                    </do>
+                    <if expression="OPERATION == 4">
+                        <then>
+                            <output expression="&quot;thanks , GOOD BYE&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;you have 0 attempts left&quot;" newline="True"/>
+                    <output expression="&quot;try again later&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
